@@ -17,7 +17,7 @@ const ProductLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div>
-      <Layout className="h-screen">
+      <Layout>
         <Header
           style={{
             display: "flex",
@@ -32,13 +32,18 @@ const ProductLayout = ({ children }: { children: React.ReactNode }) => {
           <HeaderNav />
         </Header>
         <Layout>
-          <Sider width={200} breakpoint="lg" collapsedWidth="0">
+          <Sider
+            width={200}
+            breakpoint="lg"
+            collapsedWidth="0"
+            style={{ height: "auto" }}
+          >
             <Menu
               mode="inline"
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
               style={{
-                height: "100%",
+                height: "100vh",
                 backgroundColor: "#101c64",
                 padding: "12px 0",
               }}
@@ -58,7 +63,7 @@ const ProductLayout = ({ children }: { children: React.ReactNode }) => {
               ]}
             />
           </Sider>
-          <Layout style={{ padding: "0 24px", height: "0" }}>
+          <Layout style={{ padding: "0 24px", height: "fit-content" }}>
             <Breadcrumb
               style={{ margin: "16px 0" }}
               items={[
