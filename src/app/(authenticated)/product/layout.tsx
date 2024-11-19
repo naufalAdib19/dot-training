@@ -6,18 +6,17 @@ import { useState } from "react";
 import { Layout, Menu, theme, Breadcrumb } from "antd";
 import HeaderNav from "./_components/HeaderNav/HeaderNav";
 import { FileDoneOutlined } from "@ant-design/icons";
-
 const { Header, Sider, Content } = Layout;
 
 const ProductLayout = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(() => new QueryClient()); // ensure that the QueryClient instance is created only once
 
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { borderRadiusLG },
   } = theme.useToken();
 
   return (
-    <div>
+    <>
       <Layout>
         <Header
           style={{
@@ -81,9 +80,7 @@ const ProductLayout = ({ children }: { children: React.ReactNode }) => {
             ></Breadcrumb>
             <Content
               style={{
-                padding: 24,
                 minHeight: 280,
-                background: colorBgContainer,
                 borderRadius: borderRadiusLG,
               }}
             >
@@ -94,7 +91,7 @@ const ProductLayout = ({ children }: { children: React.ReactNode }) => {
           </Layout>
         </Layout>
       </Layout>
-    </div>
+    </>
   );
 };
 
