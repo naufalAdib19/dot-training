@@ -73,6 +73,8 @@ const TableData = ({ data }: { data: listProductType[] }) => {
         columns={column}
         dataSource={data}
         rowKey={(row) => row.code}
+        scroll={{ x: "max-content" }}
+        style={{ overflowX: "auto" }}
       />
     </div>
   );

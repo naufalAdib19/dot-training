@@ -5,6 +5,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Layout, Menu, theme, Breadcrumb } from "antd";
 import HeaderNav from "./_components/HeaderNav/HeaderNav";
+import { FileDoneOutlined } from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
 
@@ -51,14 +52,17 @@ const ProductLayout = ({ children }: { children: React.ReactNode }) => {
                 {
                   key: 1,
                   label: "Menu 1",
+                  icon: <FileDoneOutlined />,
                 },
                 {
                   key: 2,
                   label: "Menu 2",
+                  icon: <FileDoneOutlined />,
                 },
                 {
                   key: 3,
                   label: "Menu 3",
+                  icon: <FileDoneOutlined />,
                 },
               ]}
             />
