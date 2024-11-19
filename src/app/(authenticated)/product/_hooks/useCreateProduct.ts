@@ -14,9 +14,7 @@ export const useCreateProduct = ({
 }: useCreateProductParamsType) => {
   return useMutation({
     mutationFn: async (data: listProductType) => {
-      const resp = await axiosInstance.post("/products", {
-        data,
-      });
+      const resp = await axiosInstance.post("/products", data);
       return resp;
     },
     onSuccess,
