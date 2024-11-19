@@ -3,6 +3,6 @@ export type listProductType = {
   name: string;
   price: number;
   accountCode: string;
-  description: string;
+  description?: string | undefined;
   status: string;
 };
