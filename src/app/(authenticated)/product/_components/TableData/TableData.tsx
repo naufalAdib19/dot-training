@@ -75,6 +75,9 @@ const TableData = ({ data }: { data: listProductType[] }) => {
         rowKey={(row) => row.code}
         scroll={{ x: "max-content" }}
         style={{ overflowX: "auto" }}
+        pagination={{
+          pageSize: 5,
+        }}
       />
     </div>
   );
