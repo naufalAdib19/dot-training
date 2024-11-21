@@ -7,6 +7,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDeleteProduct } from "../../_hooks/useDeleteProduct";
 import { message } from "antd";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 const rowSelection: TableProps<listProductType>["rowSelection"] = {
   getCheckboxProps: (record: listProductType) => ({
@@ -16,6 +17,7 @@ const rowSelection: TableProps<listProductType>["rowSelection"] = {
 
 const TableData = ({ data }: { data: listProductType[] }) => {
   const [isModalShow, setIsModalShow] = useState<boolean>(false);
+  const router = useRouter();
   const queryClient = useQueryClient();
   const [messageApi, contextHolder] = message.useMessage();
   const [currentSelectedProduct, setCurrentSelectedProduct] = useState<
@@ -53,7 +55,16 @@ const TableData = ({ data }: { data: listProductType[] }) => {
     },
     {
       title: "Name",
-      dataIndex: "name",
+      render: (val) => (
+        <p
+          className="cursor-pointer"
+          onClick={() => {
+            router.push(`/product/${val.id}`);
+          }}
+        >
+          {val.name}
+        </p>
+      ),
     },
     {
       title: "Price",
