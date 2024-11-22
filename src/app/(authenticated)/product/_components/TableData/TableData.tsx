@@ -94,6 +94,9 @@ const TableData = ({ data }: { data: listProductType[] }) => {
           <EditOutlined
             className="hover:cursor-pointer"
             style={{ color: "blue", marginRight: "8px" }}
+            onClick={() => {
+              router.push(`product/${val.id}/update`);
+            }}
           />
           |
           <DeleteOutlined
