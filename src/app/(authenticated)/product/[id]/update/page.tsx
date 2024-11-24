@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { useProductDetailQuery } from "../../_hooks/useProductDetailQuery";
+import { useProductDetailQuery } from "../../_hooks/use-product-detail-query";
 import { useForm, Controller } from "react-hook-form";
 import { ProductType, productSchema } from "@/utils/productValidation";
 import { zodResolver } from "@hookform/resolvers/zod";

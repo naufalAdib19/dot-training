@@ -7,7 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, Input, InputNumber, Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
-import { useCreateProduct } from "../_hooks/useCreateProduct";
+import { useCreateProduct } from "../_hooks/use-create-product";
 import { message } from "antd";
 import { useQueryClient } from "@tanstack/react-query";
 

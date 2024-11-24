@@ -4,7 +4,7 @@ import { Button, Table, Modal } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { listProductType } from "../../_types/listProductType";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { useDeleteProduct } from "../../_hooks/useDeleteProduct";
+import { useDeleteProduct } from "../../_hooks/use-delete-product";
 import { message } from "antd";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";

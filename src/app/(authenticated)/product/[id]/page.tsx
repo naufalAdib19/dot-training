@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useProductDetailQuery } from "../_hooks/useProductDetailQuery";
+import { useProductDetailQuery } from "../_hooks/use-product-detail-query";
 import { message, Divider, Skeleton } from "antd";
 
 const DetailPage = ({ params }: { params: { id: string } }) => {

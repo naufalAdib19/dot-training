@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
-import { useProductQuery } from "./_hooks/useProductQuery";
-import TableData from "./_components/TableData/TableData";
+import { useProductQuery } from "./_hooks/use-product-query";
+import TableData from "./_components/table-data/table-data";
 import { Button, Input, Select, Typography } from "antd";
 import { SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";

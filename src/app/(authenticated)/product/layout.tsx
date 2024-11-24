@@ -4,7 +4,7 @@ import React from "react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Layout, Menu, theme, Breadcrumb } from "antd";
-import HeaderNav from "./_components/HeaderNav/HeaderNav";
+import HeaderNav from "./_components/header-nav/header-nav";
 import { FileDoneOutlined } from "@ant-design/icons";
 const { Header, Sider, Content } = Layout;
 
