@@ -46,7 +46,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div>
+    <>
       {contextHolder}
       <Button
         variant="solid"
@@ -190,7 +190,7 @@ const CreatePage = () => {
           </Form.Item>
         </Form>
       </div>
-    </div>
+    </>
   );
 };
 

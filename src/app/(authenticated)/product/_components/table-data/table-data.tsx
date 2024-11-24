@@ -116,7 +116,7 @@ const TableData = ({ data }: { data: listProductType[] | undefined }) => {
   ];
 
   return (
-    <div>
+    <>
       {contextHolder}
       <Table<listProductType>
         rowSelection={{ ...rowSelection }}
@@ -148,7 +148,7 @@ const TableData = ({ data }: { data: listProductType[] | undefined }) => {
       >
         Are you sure want to delete {currentSelectedProduct.name}?
       </Modal>
-    </div>
+    </>
   );
 };
 

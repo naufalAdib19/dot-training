@@ -41,7 +41,7 @@ const ListPage = () => {
   }, [data, userSearch, isSorting]);
 
   return (
-    <div>
+    <>
       {contextHolder}
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-[16px]">
         <Title level={2}>Material</Title>
@@ -82,7 +82,7 @@ const ListPage = () => {
         </div>
         <TableData data={dataFiltered} />
       </div>
-    </div>
+    </>
   );
 };
 
