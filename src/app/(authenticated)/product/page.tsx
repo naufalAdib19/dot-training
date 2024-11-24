@@ -1,20 +1,17 @@
 "use client";
-import React, { useEffect } from "react";
+import { useMemo, useState } from "react";
 import { useProductQuery } from "./_hooks/useProductQuery";
 import TableData from "./_components/TableData/TableData";
-import { Button, Input, Typography } from "antd";
-import {
-  SortAscendingOutlined,
-  SearchOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { Button, Input, Select, Typography } from "antd";
+import { SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { message } from "antd";
+import { listProductType } from "./_types/listProductType";
 
 const { Title } = Typography;
 
 const ListPage = () => {
-  const { data, isError } = useProductQuery({
+  const { data } = useProductQuery({
     onError: () => {
       messageApi.open({
         type: "error",
@@ -24,6 +21,24 @@ const ListPage = () => {
   });
   const router = useRouter();
   const [messageApi, contextHolder] = message.useMessage();
+  const [userSearch, setuserSearch] = useState<string>("");
+  const [isSorting, setIsSorting] = useState<boolean>(false);
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setuserSearch(e.target.value);
+  };
+  const handleSort = (value: boolean) => {
+    setIsSorting(value);
+  };
+
+  const dataFiltered = useMemo(() => {
+    return data?.data
+      .filter(
+        (val: listProductType) =>
+          val.name.toLowerCase().includes(userSearch.toLowerCase()) ||
+          val.accountCode.toLowerCase().includes(userSearch.toLowerCase())
+      )
+      .sort((a, b) => (isSorting ? a.price - b.price : 0));
+  }, [data, userSearch, isSorting]);
 
   return (
     <div>
@@ -44,21 +59,28 @@ const ListPage = () => {
       </div>
       <div className="bg-white p-[24px] rounded-lg">
         <div className="mb-3 flex items-center gap-x-2">
-          <Button
-            variant="outlined"
-            color="default"
-            icon={<SortAscendingOutlined />}
-            iconPosition="start"
-          >
-            Sort
-          </Button>
+          <Select
+            style={{ width: 120 }}
+            onChange={handleSort}
+            options={[
+              {
+                label: "",
+                value: false,
+              },
+              {
+                label: "Price",
+                value: true,
+              },
+            ]}
+          />
           <Input
             size="middle"
-            placeholder="search"
+            placeholder="search name and account code"
             prefix={<SearchOutlined />}
+            onChange={handleSearchChange}
           ></Input>
         </div>
-        <TableData data={data?.data} />
+        <TableData data={dataFiltered} />
       </div>
     </div>
   );

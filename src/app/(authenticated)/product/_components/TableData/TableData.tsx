@@ -15,7 +15,7 @@ const rowSelection: TableProps<listProductType>["rowSelection"] = {
   }),
 };
 
-const TableData = ({ data }: { data: listProductType[] }) => {
+const TableData = ({ data }: { data: listProductType[] | undefined }) => {
   const [isModalShow, setIsModalShow] = useState<boolean>(false);
   const router = useRouter();
   const queryClient = useQueryClient();
