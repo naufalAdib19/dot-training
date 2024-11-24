@@ -1,16 +1,12 @@
 "use client";
 
 import React from "react";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import { Layout, Menu, theme, Breadcrumb } from "antd";
 import HeaderNav from "./_components/header-nav/header-nav";
 import { FileDoneOutlined } from "@ant-design/icons";
 const { Header, Sider, Content } = Layout;
 
 const ProductLayout = ({ children }: { children: React.ReactNode }) => {
-  const [queryClient] = useState(() => new QueryClient()); // ensure that the QueryClient instance is created only once
-
   const {
     token: { borderRadiusLG },
   } = theme.useToken();
@@ -83,9 +79,7 @@ const ProductLayout = ({ children }: { children: React.ReactNode }) => {
               borderRadius: borderRadiusLG,
             }}
           >
-            <QueryClientProvider client={queryClient}>
-              {children}
-            </QueryClientProvider>
+            {children}
           </Content>
         </Layout>
       </Layout>
