@@ -1,20 +1,13 @@
 "use client";
 import React from "react";
 import { useProductDetailQuery } from "../_hooks/use-product-detail-query";
-import { message, Divider, Skeleton } from "antd";
+import { Divider, Skeleton } from "antd";
 
 const DetailPage = ({ params }: { params: { id: string } }) => {
-  const [messageApi, contextHolder] = message.useMessage();
-  const { data, isLoading } = useProductDetailQuery(params.id, () => {
-    messageApi.open({
-      type: "error",
-      content: "Something wrong happen during get the data",
-    });
-  });
+  const { data, isLoading } = useProductDetailQuery(params.id);
 
   return (
     <div className="bg-white rounded-lg p-[24px]">
-      {contextHolder}
       {isLoading ? (
         <Skeleton />
       ) : (

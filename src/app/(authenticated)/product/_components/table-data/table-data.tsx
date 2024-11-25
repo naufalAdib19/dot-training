@@ -1,12 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Table, Modal } from "antd";
+import { Table, Modal } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { listProductType } from "../../_types/listProductType";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDeleteProduct } from "../../_hooks/use-delete-product";
-import { message } from "antd";
-import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 const rowSelection: TableProps<listProductType>["rowSelection"] = {
@@ -18,8 +16,6 @@ const rowSelection: TableProps<listProductType>["rowSelection"] = {
 const TableData = ({ data }: { data: listProductType[] | undefined }) => {
   const [isModalShow, setIsModalShow] = useState<boolean>(false);
   const router = useRouter();
-  const queryClient = useQueryClient();
-  const [messageApi, contextHolder] = message.useMessage();
   const [currentSelectedProduct, setCurrentSelectedProduct] = useState<
     Record<string, any>
   >({
@@ -27,25 +23,8 @@ const TableData = ({ data }: { data: listProductType[] | undefined }) => {
     id: 0,
   });
   const { mutate, isPending } = useDeleteProduct({
-    onError: () => {
-      messageApi.open({
-        type: "error",
-        content: `Something wrong happen when delete ${currentSelectedProduct.name}`,
-      });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["listProduct"],
-      });
-      messageApi
-        .open({
-          type: "success",
-          content: `Success delete ${currentSelectedProduct.name}`,
-          duration: 1.2,
-        })
-        .then(() => {
-          setIsModalShow(false);
-        });
+    closeModalAfterSuccessDelete: () => {
+      setIsModalShow(false);
     },
   });
   const column: TableColumnsType<listProductType> = [
@@ -117,7 +96,6 @@ const TableData = ({ data }: { data: listProductType[] | undefined }) => {
 
   return (
     <>
-      {contextHolder}
       <Table<listProductType>
         rowSelection={{ ...rowSelection }}
         columns={column}

@@ -5,22 +5,13 @@ import TableData from "./_components/table-data/table-data";
 import { Button, Input, Select, Typography } from "antd";
 import { SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
-import { message } from "antd";
-import { listProductType } from "./_types/listProductType";
+import { sortAndFilter } from "@/utils/sorting-filtering-table-data";
 
 const { Title } = Typography;
 
 const ListPage = () => {
-  const { data } = useProductQuery({
-    onError: () => {
-      messageApi.open({
-        type: "error",
-        content: "Something wrong happen during get the data from server",
-      });
-    },
-  });
+  const { data } = useProductQuery();
   const router = useRouter();
-  const [messageApi, contextHolder] = message.useMessage();
   const [userSearch, setuserSearch] = useState<string>("");
   const [isSorting, setIsSorting] = useState<boolean>(false);
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,18 +22,15 @@ const ListPage = () => {
   };
 
   const dataFiltered = useMemo(() => {
-    return data?.data
-      .filter(
-        (val: listProductType) =>
-          val.name.toLowerCase().includes(userSearch.toLowerCase()) ||
-          val.accountCode.toLowerCase().includes(userSearch.toLowerCase())
-      )
-      .sort((a, b) => (isSorting ? a.price - b.price : 0));
+    return sortAndFilter({
+      isSorting: isSorting,
+      userSearch: userSearch,
+      data: data?.data,
+    });
   }, [data, userSearch, isSorting]);
 
   return (
     <>
-      {contextHolder}
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-[16px]">
         <Title level={2}>Material</Title>
         <Button

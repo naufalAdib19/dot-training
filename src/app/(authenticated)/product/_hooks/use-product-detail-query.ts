@@ -1,8 +1,9 @@
 import { axiosInstance } from "@/libs/axios";
 import { useQuery } from "@tanstack/react-query";
 import { listProductType } from "../_types/listProductType";
+import { message } from "antd";
 
-export const useProductDetailQuery = (id: string, onError: () => void) => {
+export const useProductDetailQuery = (id: string) => {
   return useQuery({
     queryFn: async () => {
       try {
@@ -11,7 +12,7 @@ export const useProductDetailQuery = (id: string, onError: () => void) => {
         );
         return resp;
       } catch (e) {
-        onError();
+        message.error("Error occurs when get the data from server");
       }
       return null;
     },

@@ -4,34 +4,15 @@ import { useProductDetailQuery } from "../../_hooks/use-product-detail-query";
 import { useForm, Controller } from "react-hook-form";
 import { ProductType, productSchema } from "@/utils/productValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Form, Input, InputNumber, message, Skeleton } from "antd";
+import { Button, Form, Input, InputNumber, Skeleton } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
-import { useMutation } from "@tanstack/react-query";
 import { useUpdateProduct } from "../../_hooks/use-update-product";
 
 const UpdatePage = ({ params }: { params: { id: string } }) => {
-  const { data, isLoading } = useProductDetailQuery(params.id, () => {
-    messageApi.open({
-      type: "error",
-      content: "Error occurs when get the data from the server",
-    });
-  });
+  const { data, isLoading } = useProductDetailQuery(params.id);
   const { mutate, isPending } = useUpdateProduct({
     id: params.id,
-    onError: () => {
-      messageApi.open({
-        type: "error",
-        content: "Error occurs when updating the data",
-      });
-    },
-    onSuccess: () => {
-      messageApi.open({
-        type: "success",
-        content: "Success updating the data",
-      });
-    },
   });
-  const [messageApi, contextHolder] = message.useMessage();
   const {
     control,
     handleSubmit,
@@ -61,7 +42,6 @@ const UpdatePage = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      {contextHolder}
       <Form
         className="grid grid-cols-1 md:grid-cols-2 gap-x-7 bg-white p-[24px] rounded-lg"
         layout="vertical"

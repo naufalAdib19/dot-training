@@ -8,13 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, Input, InputNumber, Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
 import { useCreateProduct } from "../_hooks/use-create-product";
-import { message } from "antd";
-import { useQueryClient } from "@tanstack/react-query";
 
 const CreatePage = () => {
   const router = useRouter();
-  const [messageApi, contextHolder] = message.useMessage();
-  const queryClient = useQueryClient();
   const {
     control,
     handleSubmit,
@@ -22,32 +18,13 @@ const CreatePage = () => {
   } = useForm<ProductType>({
     resolver: zodResolver(productSchema),
   });
-
-  const { mutate, isPending } = useCreateProduct({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["listProduct"],
-      });
-      messageApi.open({
-        type: "success",
-        content: "Success creating the data",
-      });
-    },
-    onError: () => {
-      messageApi.open({
-        type: "error",
-        content: "Something wrong happen when create the data",
-      });
-    },
-  });
-
+  const { mutate, isPending } = useCreateProduct();
   const onSubmit = (data: ProductType) => {
     mutate(data);
   };
 
   return (
     <>
-      {contextHolder}
       <Button
         variant="solid"
         color="primary"

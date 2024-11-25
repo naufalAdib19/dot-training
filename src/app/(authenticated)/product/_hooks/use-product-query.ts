@@ -2,21 +2,16 @@
 import { axiosInstance } from "@/libs/axios";
 import { useQuery } from "@tanstack/react-query";
 import { listProductType } from "../_types/listProductType";
+import { message } from "antd";
 
-type useProductQueryParamsType = {
-  onError?: () => void;
-};
-
-export const useProductQuery = ({ onError }: useProductQueryParamsType) => {
+export const useProductQuery = () => {
   return useQuery({
     queryFn: async () => {
       try {
         const resp = await axiosInstance.get<listProductType[]>("/products");
         return resp;
       } catch (error) {
-        if (onError) {
-          onError();
-        }
+        message.error("Error occurs when fetching the data");
       }
       return null;
     },
