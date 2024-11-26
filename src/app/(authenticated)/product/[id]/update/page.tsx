@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useProductDetailQuery } from "../../_hooks/use-product-detail-query";
 import { useForm, Controller } from "react-hook-form";
-import { ProductType, productSchema } from "@/utils/productValidation";
+import { ProductType, productSchema } from "@/utils/product-validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Form, Input, InputNumber, Skeleton } from "antd";
 import { SaveOutlined } from "@ant-design/icons";

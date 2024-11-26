@@ -2,7 +2,7 @@
 import React from "react";
 import { LeftOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
-import { productSchema, ProductType } from "@/utils/productValidation";
+import { productSchema, ProductType } from "@/utils/product-validation";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, Input, InputNumber, Button } from "antd";
