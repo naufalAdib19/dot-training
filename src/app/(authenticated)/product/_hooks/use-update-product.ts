@@ -4,7 +4,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { axiosInstance } from "@/libs/axios";
-import { listProductType } from "../_types/listProductType";
+import { ProductType } from "../_types/product-type";
 import { message } from "antd";
 
 type UseUpdateProductParamsType = {
@@ -15,7 +15,7 @@ export const useUpdateProduct = ({ id }: UseUpdateProductParamsType) => {
   const queryClient: QueryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: listProductType) => {
+    mutationFn: async (data: ProductType) => {
       const resp = await axiosInstance.put(`/products/${id}`, data);
       return resp;
     },

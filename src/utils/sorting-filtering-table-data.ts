@@ -1,20 +1,20 @@
-import { listProductType } from "@/app/(authenticated)/product/_types/listProductType";
+import { ProductType } from "@/app/(authenticated)/product/_types/product-type";
 
 type SortAndFilterParamsType = {
   userSearch: string;
   isSorting: boolean;
-  data: listProductType[] | undefined;
+  data: ProductType[] | undefined;
 };
 
 export const sortAndFilter = (
   params: SortAndFilterParamsType
-): listProductType[] => {
+): ProductType[] => {
   if (!params.data) {
     return [];
   }
   return params.data
     .filter(
-      (val: listProductType) =>
+      (val: ProductType) =>
         val.name.toLowerCase().includes(params.userSearch.toLowerCase()) ||
         val.accountCode.toLowerCase().includes(params.userSearch.toLowerCase())
     )

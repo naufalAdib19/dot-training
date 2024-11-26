@@ -1,7 +1,7 @@
 "use client";
 import { axiosInstance } from "@/libs/axios";
 import { QueryClient, useMutation } from "@tanstack/react-query";
-import { listProductType } from "../_types/listProductType";
+import { ProductType } from "../_types/product-type";
 import { useQueryClient } from "@tanstack/react-query";
 import { message } from "antd";
 
@@ -9,7 +9,7 @@ export const useCreateProduct = () => {
   const queryClient: QueryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: listProductType) => {
+    mutationFn: async (data: ProductType) => {
       const resp = await axiosInstance.post("/products", data);
       return resp;
     },

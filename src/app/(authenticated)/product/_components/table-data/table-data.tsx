@@ -2,18 +2,18 @@
 import React, { useState } from "react";
 import { Table, Modal } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
-import { listProductType } from "../../_types/listProductType";
+import { ProductType } from "../../_types/product-type";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDeleteProduct } from "../../_hooks/use-delete-product";
 import { useRouter } from "next/navigation";
 
-const rowSelection: TableProps<listProductType>["rowSelection"] = {
-  getCheckboxProps: (record: listProductType) => ({
+const rowSelection: TableProps<ProductType>["rowSelection"] = {
+  getCheckboxProps: (record: ProductType) => ({
     name: record.name,
   }),
 };
 
-const TableData = ({ data }: { data: listProductType[] | undefined }) => {
+const TableData = ({ data }: { data: ProductType[] | undefined }) => {
   const [isModalShow, setIsModalShow] = useState<boolean>(false);
   const router = useRouter();
   const [currentSelectedProduct, setCurrentSelectedProduct] = useState<
@@ -27,7 +27,7 @@ const TableData = ({ data }: { data: listProductType[] | undefined }) => {
       setIsModalShow(false);
     },
   });
-  const column: TableColumnsType<listProductType> = [
+  const column: TableColumnsType<ProductType> = [
     {
       title: "Code",
       dataIndex: "code",
@@ -96,7 +96,7 @@ const TableData = ({ data }: { data: listProductType[] | undefined }) => {
 
   return (
     <>
-      <Table<listProductType>
+      <Table<ProductType>
         rowSelection={{ ...rowSelection }}
         columns={column}
         dataSource={data}

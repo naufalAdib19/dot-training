@@ -1,4 +1,4 @@
-export type listProductType = {
+export type ProductType = {
   code: string;
   name: string;
   price: number;
