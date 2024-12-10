@@ -7,7 +7,7 @@ import { message } from "antd";
 
 export const useCreateProduct = () => {
   const queryClient: QueryClient = useQueryClient();
-
+  const nullableVariable = null;
   return useMutation({
     mutationFn: async (data: ProductType) => {
       const resp = await axiosInstance.post("/products", data);
